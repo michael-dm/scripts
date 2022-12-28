@@ -19,10 +19,6 @@ sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication no/' /etc/ssh/ssh
 systemctl restart sshd
 apt install fail2ban -y
 
-ufw allow 202,80,443,3000,996,7946,4789,2377/tcp
-ufw allow 7946,4789,2377/udp
-ufw enable
-
 # Install Docker
 sudo apt-get install \
     ca-certificates \
@@ -42,3 +38,8 @@ apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containe
 
 # Install CapRover
 docker run -p 80:80 -p 443:443 -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock -v /captain:/captain caprover/caprover
+
+# setup firewall
+ufw allow 202,80,443,3000,996,7946,4789,2377/tcp
+ufw allow 7946,4789,2377/udp
+ufw enable --force

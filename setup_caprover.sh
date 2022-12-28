@@ -25,11 +25,11 @@ apt install fail2ban -y
 
 # Install Docker
 echo "Installing Docker..."
-sudo apt-get install \
+apt install \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release -y
 
 mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -39,7 +39,7 @@ echo \
 apt update
 
 VERSION_STRING=5:19.03.15~3-0~ubuntu-bionic
-apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin
+apt install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-compose-plugin -y
 
 # Install CapRover
 echo "Installing CapRover..."
